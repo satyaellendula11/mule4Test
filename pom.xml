@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>generic-group-id</groupId>
+	<artifactId>app-poc1</artifactId>
+	<version>1.0.0</version>
+	<packaging>mule-application</packaging>
+	<name>app-poc1</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<mule.version>4.3.0</mule.version>
+		<mule.maven.plugin.version>3.5.2</mule.maven.plugin.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<sharedLibraries>
+						<!-- Shared Dependencies -->
+					</sharedLibraries>
+					<classifier>mule-application</classifier>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Mule Dependencies -->
+	<dependencies>
+		<!-- Extension Dependencies -->
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-http-connector</artifactId>
+			<version>1.6.0</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+
+		<!-- Shared Dependencies -->
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>exchange</id>
+			<name>exchange</name>
+			<url>http://maven-facade-service.exchange.svc:443/api/v1/maven</url>
+		</repository>
+		<repository>
+			<id>Central</id>
+			<name>Central</name>
+			<url>https://repo1.maven.org/maven2/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>mulesoft-releases</id>
+			<name>MuleSoft Releases Repository</name>
+			<url>http://repository.mulesoft.org/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>mule-ee-releases</id>
+			<name>MuleEE Releases Repository</name>
+			<url>https://repository-master.mulesoft.org/nexus/content/repositories/releases-ee/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mulesoft-release</id>
+			<name>mulesoft release repository</name>
+			<layout>default</layout>
+			<url>http://repository.mulesoft.org/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
