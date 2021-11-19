@@ -7,10 +7,10 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
    <!--  <http:listener-config doc:id="7524cf66-78aa-4eef-81b4-ed595043cb62" doc:name="CloudHub HTTP" doc:timestamp="1635262173883" name="cloudhub_http">
         <http:listener-connection host="localhost" port="9090"/>
     </http:listener-config> -->
-    <api-gateway:autodiscovery apiId="17441304" doc:name="API Autodiscovery" doc:id="4af54388-af88-4765-9ac0-0b5f5e19aeac" flowRef="flow1" />
+    <!--<api-gateway:autodiscovery apiId="17441304" doc:name="API Autodiscovery" doc:id="4af54388-af88-4765-9ac0-0b5f5e19aeac" flowRef="flow1" />-->
 	<flow doc:id="f36bcbe2-fb49-455d-8873-9b3075892f13" doc:name="Flow1" doc:timestamp="1635262077856" name="flow1">
        
-        <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution ${DB_USER_NAME}" level="INFO"/>
+        <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="DB User Name ${DB_USER_NAME}" level="INFO"/>
 		<ee:transform doc:name="Transform Message" doc:id="842b4c75-c418-4fd3-969d-1725671261e3">
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -21,7 +21,7 @@ output application/json
 	java_runtime_name: p('java.runtime.name'),
 	"java_version" : p('java.version'),  
     mule_home: p('mule.home'),  
-    db_user: p('DB_USER')
+    db_user: p('DB_USER_NAME')
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
