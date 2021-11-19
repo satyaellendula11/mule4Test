@@ -3,6 +3,7 @@
 http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
     <configuration-properties file="mule-artifact.properties"/>
+    <configuration-properties file="mule-app.properties"/>
    <!--  <http:listener-config doc:id="7524cf66-78aa-4eef-81b4-ed595043cb62" doc:name="CloudHub HTTP" doc:timestamp="1635262173883" name="cloudhub_http">
         <http:listener-connection host="localhost" port="9090"/>
     </http:listener-config> -->
