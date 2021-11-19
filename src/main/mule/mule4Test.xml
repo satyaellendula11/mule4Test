@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
     <configuration-properties file="mule-artifact.properties"/>
-    <!--<http:listener-config doc:id="7524cf66-78aa-4eef-81b4-ed595043cb62" doc:name="CloudHub HTTP" doc:timestamp="1635262173883" name="cloudhub_http">
-        <http:listener-connection host="${cloudhub_http.Connection.host.value}" port="${cloudhub_http.Connection.port.value}"/>
-    </http:listener-config>-->
-	<api-gateway:autodiscovery apiId="17441304" doc:name="API Autodiscovery" doc:id="4af54388-af88-4765-9ac0-0b5f5e19aeac" flowRef="flow1" />
-	
-    <flow doc:id="f36bcbe2-fb49-455d-8873-9b3075892f13" doc:name="Flow1" doc:timestamp="1635262077856" name="flow1">
-        <http:listener allowedMethods="GET" config-ref="cloudhub_http" doc:id="986dbdcf-eea5-4969-ab4d-83aef2c259c2" doc:name="Listener" doc:timestamp="1635262255263" path="/app/poc1/listener1">
-			<http:response statusCode="200" reasonPhrase="Success" />
-			<http:error-response statusCode="403" />
-		</http:listener>
-        <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution #[DB_USER]"/>
-		<set-payload value="java.vendor=${java.vendor}, java.runtime.name=${java.runtime.name}, java.version=${java.version},  
-       mule.home=${mule.home},  
-      environment.type=${environment.type}, worker.id=${worker.id}" doc:name="Set Payload" doc:id="f4e92211-0d3c-4e93-9f25-8075d73cff74" mimeType="application/json"/>
+   <!--  <http:listener-config doc:id="7524cf66-78aa-4eef-81b4-ed595043cb62" doc:name="CloudHub HTTP" doc:timestamp="1635262173883" name="cloudhub_http">
+        <http:listener-connection host="localhost" port="9090"/>
+    </http:listener-config> -->
+    <api-gateway:autodiscovery apiId="17441304" doc:name="API Autodiscovery" doc:id="4af54388-af88-4765-9ac0-0b5f5e19aeac" flowRef="flow1" />
+	<flow doc:id="f36bcbe2-fb49-455d-8873-9b3075892f13" doc:name="Flow1" doc:timestamp="1635262077856" name="flow1">
+       
+        <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution ${DB_USER_NAME}" level="INFO"/>
+		<ee:transform doc:name="Transform Message" doc:id="842b4c75-c418-4fd3-969d-1725671261e3">
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	java_vendor : p('java.vendor'),
+	java_runtime_name: p('java.runtime.name'),
+	"java_version" : p('java.version'),  
+    mule_home: p('mule.home'),  
+    db_user: p('DB_USER')
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
     
+
 </flow>
 </mule>
