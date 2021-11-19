@@ -9,7 +9,7 @@
 			<http:response statusCode="200" reasonPhrase="Success" />
 			<http:error-response statusCode="403" />
 		</http:listener>
-        <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution"/>
+        <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution #[DB_USER]"/>
 		<set-payload value="java.vendor=${java.vendor}, java.runtime.name=${java.runtime.name}, java.version=${java.version},  
        mule.home=${mule.home},  
       environment.type=${environment.type}, worker.id=${worker.id}" doc:name="Set Payload" doc:id="f4e92211-0d3c-4e93-9f25-8075d73cff74" mimeType="application/json"/>
