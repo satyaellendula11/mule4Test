@@ -6,11 +6,11 @@ http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/
     <configuration-properties file="mule-artifact.properties"/>
     <configuration-properties file="mule-app.properties"/>
    <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4166608b-a243-4b09-890d-b8adfb33229a">
-		<http:listener-connection host="0.0.0.0" port="${https.port}">			
+		<http:listener-connection host="0.0.0.0" port="${http.port}">			
 		</http:listener-connection>
 	</http:listener-config>
 	<flow doc:id="f36bcbe2-fb49-455d-8873-9b3075892f13" doc:name="Flow1" doc:timestamp="1635262077856" name="SamplePoc">
-        <http:listener doc:name="Listener" doc:id="551eb2b3-d886-4018-afcb-b686acd4835c" config-ref="HTTP_Listener_config" path="/mule4/poc"/>
+        <http:listener doc:name="Listener" doc:id="551eb2b3-d886-4018-afcb-b686acd4835c" config-ref="HTTP_Listener_config" path="/mule4/poc" allowedMethods="GET"/>
 		<logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution ${DB_USER_NAME}" level="INFO"/>
 		<ee:transform doc:name="Transform Message" doc:id="842b4c75-c418-4fd3-969d-1725671261e3">
 			<ee:message >
