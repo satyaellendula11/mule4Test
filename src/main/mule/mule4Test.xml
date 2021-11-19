@@ -5,7 +5,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
     <configuration-properties file="mule-artifact.properties"/>
     <configuration-properties file="mule-app.properties"/>
    <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4166608b-a243-4b09-890d-b8adfb33229a">
-		<http:listener-connection host="0.0.0.0" port="${https.port}" protocol="HTTPS"/>
+		<http:listener-connection host="0.0.0.0" port="${http.port}" protocol="HTTPS"/>
 	</http:listener-config>
 	<flow doc:id="f36bcbe2-fb49-455d-8873-9b3075892f13" doc:name="Flow1" doc:timestamp="1635262077856" name="SamplePoc">
         <http:listener doc:name="Listener" doc:id="551eb2b3-d886-4018-afcb-b686acd4835c" config-ref="HTTP_Listener_config" path="/mule4/poc"/>
