@@ -3,11 +3,12 @@
 http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
     <configuration-properties file="mule-artifact.properties"/>
+    <configuration-properties file="mule-app.properties"/>
    <!--  <http:listener-config doc:id="7524cf66-78aa-4eef-81b4-ed595043cb62" doc:name="CloudHub HTTP" doc:timestamp="1635262173883" name="cloudhub_http">
         <http:listener-connection host="localhost" port="9090"/>
     </http:listener-config> -->
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4166608b-a243-4b09-890d-b8adfb33229a" basePath="/mule4/poc" >
-		<http:listener-connection host="${cloudhub_http.Connection.host.value}" port="${cloudhub_http.Connection.port.value}" />
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
 	<flow doc:id="f36bcbe2-fb49-455d-8873-9b3075892f13" doc:name="Flow1" doc:timestamp="1635262077856" name="SamplePoc">
         <logger doc:id="b4da6b45-a81a-48d0-b014-a54ef8480328" doc:name="Logger" doc:timestamp="1635262317662" message="This is logger execution ${DB_USER_NAME}" level="INFO"/>
