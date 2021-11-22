@@ -5,6 +5,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
     <configuration-properties file="mule-artifact.properties"/>
     <configuration-properties file="mule-app.properties"/>
+    <configuration-properties file="configuration.yaml"/>
    <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4166608b-a243-4b09-890d-b8adfb33229a">
 		<http:listener-connection host="0.0.0.0" port="${http.port}">			
 		</http:listener-connection>
@@ -20,7 +21,8 @@ output application/json
 {
 	"java_version" : p('java.version'),  
     mule_home: p('mule.home'),  
-    db_user_name: p('DB_USER_NAME')
+    db_user_name: p('DB_USER_NAME'),
+    yaml_test: p('config1.test')
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
