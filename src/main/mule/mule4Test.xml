@@ -22,7 +22,8 @@ output application/json
 	"java_version" : p('java.version'),  
     mule_home: p('mule.home'),  
     db_user_name: p('DB_USER_NAME'),
-    yaml_test: p('config.test')
+    yaml_test: p('config.test'),
+    localTest: localTest
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
